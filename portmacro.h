@@ -44,24 +44,23 @@
 
 /* Type definitions. */
 
-#define portCHAR        char
-#define portFLOAT       float
-#define portDOUBLE      double
-#define portLONG        long
-#define portSHORT       short
-#define portSTACK_TYPE  unsigned portLONG
-#define portBASE_TYPE   portLONG
+#define portCHAR              char
+#define portFLOAT             float
+#define portDOUBLE            double
+#define portLONG              long
+#define portSHORT             short
+#define portSTACK_TYPE        unsigned portLONG
+#define portBASE_TYPE         portLONG
 
-typedef long            BaseType_t;
-typedef portSTACK_TYPE  StackType_t;
-typedef unsigned long   UBaseType_t;
+typedef long                  BaseType_t;
+typedef portSTACK_TYPE        StackType_t;
+typedef unsigned long         UBaseType_t;
+typedef uint32_t              TickType_t;
 
-typedef uint32_t        TickType_t;
-
-#define portMAX_DELAY       ( TickType_t ) 0xffffffffUL
-#define portSTACK_GROWTH    ( -1 )
-#define portTICK_PERIOD_MS  ( ( portTickType ) 1000 / configTICK_RATE_HZ )
-#define portBYTE_ALIGNMENT  ( 8 )
+#define portMAX_DELAY         ( TickType_t ) 0xffffffffUL
+#define portSTACK_GROWTH      ( -1 )
+#define portTICK_PERIOD_MS    ( ( portTickType ) 1000 / configTICK_RATE_HZ )
+#define portBYTE_ALIGNMENT    ( 8 )
 
 /*-----------------------------------------------------------*/
 
@@ -83,9 +82,9 @@ typedef uint32_t        TickType_t;
  * NB: Calling the macro in a nesting fashion {DINT DINT RINT RINT} will leave interrupts disabled.
  */
 
-#define portDISABLE_INTERRUPTS()    asm("	DINT")
+#define portDISABLE_INTERRUPTS()    asm("    DINT")
 
-#define portENABLE_INTERRUPTS()    asm("	RINT")
+#define portENABLE_INTERRUPTS()    asm("    RINT")
 /*-----------------------------------------------------------*/
 
 /*
@@ -119,7 +118,7 @@ extern void vTaskExitCritical(void);
 /*-----------------------------------------------------------*/
 
 /* Hardware specifics: 5 nop to eventually let multi-cycles instructions to end up. */
-#define portNOP()		asm("	NOP	5")
+#define portNOP() asm("    NOP 5")
 /*-----------------------------------------------------------*/
 
 /* Task function macros as described on the FreeRTOS.org WEB site. */
